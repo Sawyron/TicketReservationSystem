@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AA84EF7A-14AE-4438-A111-B882A7625666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketReservation.WebApi", "src\TicketReservation.WebApi\TicketReservation.WebApi.csproj", "{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketReservation.Persistence", "src\TicketReservation.Persistence\TicketReservation.Persistence.csproj", "{9483D110-669E-4925-BD32-869B9F750282}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9483D110-669E-4925-BD32-869B9F750282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9483D110-669E-4925-BD32-869B9F750282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9483D110-669E-4925-BD32-869B9F750282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9483D110-669E-4925-BD32-869B9F750282}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E25C60B2-D513-4E32-99B9-7EB4B7EFDEA1} = {AA84EF7A-14AE-4438-A111-B882A7625666}
+		{9483D110-669E-4925-BD32-869B9F750282} = {AA84EF7A-14AE-4438-A111-B882A7625666}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67192DFB-5D9C-4468-9FD8-6E1A83B5BD04}
+	EndGlobalSection
+EndGlobal
