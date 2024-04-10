@@ -8,6 +8,7 @@ using TicketReservation.Persistence.TicketTypes;
 using TicketReservation.Persistence.Trains;
 
 namespace TicketReservation.Persistence;
+
 public static class PersistenceExtensions
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration) =>

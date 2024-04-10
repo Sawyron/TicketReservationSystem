@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 namespace TicketReservation.Persistence.TicketStatuses;
+
 internal class TicketStatusRepository : ITicketStatusRepository
 {
     private readonly ApplicationDbContext _dbContext;

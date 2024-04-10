@@ -1,7 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace TicketReservation.Persistence.Trains;
+
 internal class TrainRepository : ITrainRepository
 {
     private readonly ApplicationDbContext _dbContext;

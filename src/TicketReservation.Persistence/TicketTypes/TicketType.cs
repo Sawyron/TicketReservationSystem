@@ -1,4 +1,5 @@
 ﻿namespace TicketReservation.Persistence.TicketTypes;
+
 public class TicketType
 {
     public Guid Id { get; set; }

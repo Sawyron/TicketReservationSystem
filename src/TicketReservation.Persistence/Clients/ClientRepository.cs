@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 namespace TicketReservation.Persistence.Clients;
+
 internal sealed class ClientRepository : IClientRepository
 {
     private readonly ApplicationDbContext _dbContext;

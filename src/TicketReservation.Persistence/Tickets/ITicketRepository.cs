@@ -1,5 +1,4 @@
-﻿
-namespace TicketReservation.Persistence.Tickets;
+﻿namespace TicketReservation.Persistence.Tickets;
 
 public interface ITicketRepository
 {

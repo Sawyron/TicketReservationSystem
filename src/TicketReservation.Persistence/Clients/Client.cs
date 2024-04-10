@@ -1,4 +1,5 @@
 ﻿namespace TicketReservation.Persistence.Clients;
+
 public class Client
 {
     public Guid Id { get; set; } = Guid.Empty;

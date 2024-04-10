@@ -2,6 +2,7 @@
 using TicketReservation.Persistence.Trains;
 
 namespace TicketReservation.Persistence.Tickets;
+
 public class Ticket
 {
     public Guid Id { get; set; }

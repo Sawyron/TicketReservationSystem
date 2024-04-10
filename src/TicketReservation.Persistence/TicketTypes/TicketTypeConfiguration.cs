@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TicketReservation.Persistence.TicketTypes;
+
 internal class TicketTypeConfiguration : IEntityTypeConfiguration<TicketType>
 {
     public void Configure(EntityTypeBuilder<TicketType> builder)

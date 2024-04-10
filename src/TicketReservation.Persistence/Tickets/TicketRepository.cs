@@ -2,6 +2,7 @@
 using TicketReservation.Persistence.TicketStatuses;
 
 namespace TicketReservation.Persistence.Tickets;
+
 internal class TicketRepository : ITicketRepository
 {
     private readonly ApplicationDbContext _dbContext;
