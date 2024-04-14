@@ -13,6 +13,7 @@ internal class TicketStatusRepository : ITicketStatusRepository
 
     public async Task<bool> AddPurchasedStatus(Guid ticketId, Guid purchaserId, CancellationToken cancellationToken = default)
     {
+        using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
         var existing = await _dbContext.Set<TicketStatus>()
             .FirstOrDefaultAsync(s => s.TicketId == ticketId, cancellationToken);
         if (existing is not null)
@@ -27,6 +28,7 @@ internal class TicketStatusRepository : ITicketStatusRepository
         };
         await _dbContext.AddAsync(status, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
+        await transaction.CommitAsync(cancellationToken);
         return true;
     }
 

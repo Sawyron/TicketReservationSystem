@@ -33,6 +33,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(builder => builder
+    .AllowAnyMethod()
+    .AllowAnyOrigin()
+    .AllowAnyHeader());
+
 app.UseExceptionHandler();
 
 app.UseAuthorization();

@@ -24,6 +24,16 @@ public class TicketsController : ControllerBase
         _ticketStatusRepository = ticketStatusRepository;
     }
 
+    [HttpGet("types")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TicketTypeResponse>))]
+    public async Task<IActionResult> GetAllTypes(CancellationToken cancellationToken)
+    {
+        var types = await _ticketRepository.GetAllTicketTypesAsync(cancellationToken);
+        var response = types.Select(t => new TicketTypeResponse(t.Id, t.Name))
+            .ToList();
+        return Ok(types);
+    }
+
     [HttpGet("free")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<TicketResponse>))]
     public async Task<IActionResult> GetFreeSpaces(
@@ -34,7 +44,7 @@ public class TicketsController : ControllerBase
             query.TypeId,
             cancellationToken);
         var response = tickets.Select(t =>
-            new TicketResponse(t.Id, t.PlaceNumber, string.Empty, true)).ToList();
+            new TicketResponse(t.Id, t.PlaceNumber, string.Empty, false)).ToList();
         return Ok(response);
     }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TicketReservation.Persistence.TicketStatuses;
+using TicketReservation.Persistence.TicketTypes;
 
 namespace TicketReservation.Persistence.Tickets;
 
@@ -28,4 +29,7 @@ internal class TicketRepository : ITicketRepository
              select t).ToListAsync(cancellationToken);
         return tickets;
     }
+
+    public async Task<IEnumerable<TicketType>> GetAllTicketTypesAsync(CancellationToken cancellationToken = default) =>
+        await _dbContext.Set<TicketType>().ToListAsync(cancellationToken);
 }
