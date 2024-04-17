@@ -26,6 +26,7 @@ internal class TicketRepository : ITicketRepository
              where t.TrainId == trainId
              where t.TypeId == typeId
              where s == null
+             orderby t.PlaceNumber
              select t).ToListAsync(cancellationToken);
         return tickets;
     }
