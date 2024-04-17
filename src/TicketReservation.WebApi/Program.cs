@@ -21,6 +21,11 @@ builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
+app.UseCors(builder => builder
+    .SetIsOriginAllowed((_) => true)
+    .AllowAnyHeader()
+    .AllowCredentials());
+
 if (app.Services.EnsureDbCreated())
 {
     app.Services.PolulateDb();
@@ -32,11 +37,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseCors(builder => builder
-    .AllowAnyMethod()
-    .AllowAnyOrigin()
-    .AllowAnyHeader());
 
 app.UseExceptionHandler();
 
