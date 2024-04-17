@@ -33,4 +33,16 @@ internal class TicketRepository : ITicketRepository
 
     public async Task<IEnumerable<TicketType>> GetAllTicketTypesAsync(CancellationToken cancellationToken = default) =>
         await _dbContext.Set<TicketType>().ToListAsync(cancellationToken);
+
+    public async Task<IEnumerable<Ticket>> GetClinetTicketsAsync(Guid clientId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Set<TicketStatus>()
+            .Include(s => s.Ticket)
+                .ThenInclude(t => t.Train)
+            .Include(s => s.Ticket)
+                .ThenInclude(t => t.TicketType)
+            .Where(s => s.PurchasedById == clientId)
+            .Select(s => s.Ticket)
+            .ToListAsync(cancellationToken);
+    }
 }

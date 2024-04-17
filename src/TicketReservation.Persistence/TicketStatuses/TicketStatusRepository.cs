@@ -36,7 +36,7 @@ internal class TicketStatusRepository : ITicketStatusRepository
     {
         return await _dbContext.Set<TicketStatus>()
             .Include(t => t.Ticket)
-            .ThenInclude(t => t.Train)
+                .ThenInclude(t => t.Train)
             .Where(t => t.Ticket.TrainId == trainId)
             .ToListAsync(cancellationToken);
     }

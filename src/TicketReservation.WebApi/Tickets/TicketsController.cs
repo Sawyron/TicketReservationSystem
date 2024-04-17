@@ -48,6 +48,24 @@ public class TicketsController : ControllerBase
         return Ok(response);
     }
 
+    [HttpGet("my-tickets")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ClientTicketResponse>))]
+    public async Task<IActionResult> GetClientTickets(CancellationToken cancellationToken)
+    {
+        Guid clientId = Guid.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
+        var tickets = await _ticketRepository.GetClinetTicketsAsync(clientId, cancellationToken);
+        var response = tickets.Select(t =>
+            new ClientTicketResponse(
+                t.Id,
+                t.PlaceNumber,
+                t.TrainId,
+                t.Train.Name,
+                t.TypeId,
+                t.TicketType.Name))
+            .ToList();
+        return Ok(response);
+    }
+
     [HttpPost("purchase")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
