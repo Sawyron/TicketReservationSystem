@@ -22,21 +22,17 @@ builder.Services.AddProblemDetails();
 var app = builder.Build();
 
 app.UseCors(builder => builder
-    .SetIsOriginAllowed((_) => true)
-    .AllowAnyHeader()
-    .AllowCredentials());
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 if (app.Services.EnsureDbCreated())
 {
     app.Services.PolulateDb();
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseExceptionHandler();
 

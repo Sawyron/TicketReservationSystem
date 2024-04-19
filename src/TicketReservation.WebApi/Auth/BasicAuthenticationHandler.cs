@@ -28,8 +28,7 @@ public sealed class BasicAuthenticationHandler : AuthenticationHandler<Authentic
     {
         if (!Request.Headers.TryGetValue(AuthHeaderName, out var value))
         {
-            var detail = $"Header '{AuthHeaderName}' is not provider";
-            return AuthenticateResult.Fail(detail);
+            return AuthenticateResult.Fail($"Header '{AuthHeaderName}' is not provider");
         }
         string? header = value;
         if (string.IsNullOrEmpty(header))
@@ -42,7 +41,7 @@ public sealed class BasicAuthenticationHandler : AuthenticationHandler<Authentic
         }
         string token = header[HeaderPrefix.Length..].Trim();
         string credentialsAsEncodedString = Encoding.UTF8.GetString(Convert.FromBase64String(token));
-        var credentials = credentialsAsEncodedString.Split(':');
+        string[] credentials = credentialsAsEncodedString.Split(':');
         if (credentials.Length != 2)
         {
             return AuthenticateResult.Fail("Invalid Authorization header format");
