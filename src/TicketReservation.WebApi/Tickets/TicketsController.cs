@@ -84,7 +84,7 @@ public class TicketsController : ControllerBase
             BadRequest(new ProblemDetails
             {
                 Title = "Bad request",
-                Status = StatusCodes.Status404NotFound,
+                Status = StatusCodes.Status400BadRequest,
                 Detail = $"Ticket with id '{request.TicketId}' is already purchased.",
                 Instance = HttpContext.TraceIdentifier,
                 Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1"
