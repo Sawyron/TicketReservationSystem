@@ -22,9 +22,10 @@ builder.Services.AddProblemDetails();
 var app = builder.Build();
 
 app.UseCors(builder => builder
-    .AllowAnyOrigin()
+    .SetIsOriginAllowed(_ => true)
     .AllowAnyMethod()
-    .AllowAnyHeader());
+    .AllowAnyHeader()
+    .AllowCredentials());
 
 if (app.Services.EnsureDbCreated())
 {
