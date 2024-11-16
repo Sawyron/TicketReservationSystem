@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace TicketReservation.Persistence.TicketStatuses;
 
@@ -13,23 +14,31 @@ internal class TicketStatusRepository : ITicketStatusRepository
 
     public async Task<bool> AddPurchasedStatus(Guid ticketId, Guid purchaserId, CancellationToken cancellationToken = default)
     {
-        using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
-        var existing = await _dbContext.Set<TicketStatus>()
-            .FirstOrDefaultAsync(s => s.TicketId == ticketId, cancellationToken);
-        if (existing is not null)
+        using var transaction = await _dbContext.Database.BeginTransactionAsync(IsolationLevel.ReadCommitted, cancellationToken);
+        try
         {
-            return false;
+            var existing = await _dbContext.Set<TicketStatus>()
+                .FirstOrDefaultAsync(s => s.TicketId == ticketId, cancellationToken);
+            if (existing is not null)
+            {
+                return false;
+            }
+            var status = new TicketStatus
+            {
+                PurchasedById = purchaserId,
+                TicketId = ticketId,
+                PuchasedOn = DateTime.UtcNow
+            };
+            await _dbContext.AddAsync(status, cancellationToken);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
+            return true;
         }
-        var status = new TicketStatus
+        catch (Exception)
         {
-            PurchasedById = purchaserId,
-            TicketId = ticketId,
-            PuchasedOn = DateTime.UtcNow
-        };
-        await _dbContext.AddAsync(status, cancellationToken);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-        await transaction.CommitAsync(cancellationToken);
-        return true;
+            await transaction.RollbackAsync(cancellationToken);
+            throw;
+        }
     }
 
     public async Task<IEnumerable<TicketStatus>> FindTicketStatusesForTrain(Guid trainId, CancellationToken cancellationToken = default)
