@@ -39,7 +39,7 @@ public class TicketsController : ControllerBase
     public async Task<IActionResult> GetFreeSpaces(
         [FromQuery] FreeSpacesQuery query, CancellationToken cancellationToken)
     {
-        var tickets = await _ticketRepository.FindAvalilableTicketsAsync(
+        var tickets = await _ticketRepository.FindAvailableTicketsAsync(
             query.TrainId,
             query.TypeId,
             cancellationToken);
@@ -53,7 +53,7 @@ public class TicketsController : ControllerBase
     public async Task<IActionResult> GetClientTickets(CancellationToken cancellationToken)
     {
         Guid clientId = Guid.Parse(User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value);
-        var tickets = await _ticketRepository.GetClinetTicketsAsync(clientId, cancellationToken);
+        var tickets = await _ticketRepository.GetClientTicketsAsync(clientId, cancellationToken);
         var response = tickets.Select(t =>
             new ClientTicketResponse(
                 t.Id,

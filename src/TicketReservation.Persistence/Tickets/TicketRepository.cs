@@ -13,7 +13,7 @@ internal class TicketRepository : ITicketRepository
         _dbContext = dbContext;
     }
 
-    public async Task<IEnumerable<Ticket>> FindAvalilableTicketsAsync(
+    public async Task<IEnumerable<Ticket>> FindAvailableTicketsAsync(
         Guid trainId,
         Guid typeId,
         CancellationToken cancellationToken = default)
@@ -34,7 +34,7 @@ internal class TicketRepository : ITicketRepository
     public async Task<IEnumerable<TicketType>> GetAllTicketTypesAsync(CancellationToken cancellationToken = default) =>
         await _dbContext.Set<TicketType>().ToListAsync(cancellationToken);
 
-    public async Task<IEnumerable<Ticket>> GetClinetTicketsAsync(Guid clientId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Ticket>> GetClientTicketsAsync(Guid clientId, CancellationToken cancellationToken = default)
     {
         return await _dbContext.Set<TicketStatus>()
             .Include(s => s.Ticket)

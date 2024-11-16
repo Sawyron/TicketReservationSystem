@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using TicketReservation.Persistence;
 using TicketReservation.WebApi.Auth;
-using TicketReservation.WebApi.Infrastucture;
+using TicketReservation.WebApi.Infrastructure;
 using TicketReservation.WebApi.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);

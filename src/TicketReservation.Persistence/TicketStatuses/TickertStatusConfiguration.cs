@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TicketReservation.Persistence.TicketStatuses;
 
-public class TickertStatusConfiguration : IEntityTypeConfiguration<TicketStatus>
+public class TicketStatusConfiguration : IEntityTypeConfiguration<TicketStatus>
 {
     public void Configure(EntityTypeBuilder<TicketStatus> builder)
     {
